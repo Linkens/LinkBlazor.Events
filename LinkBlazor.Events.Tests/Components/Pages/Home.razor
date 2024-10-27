@@ -1,0 +1,26 @@
+﻿@page "/"
+
+<div>Counter @Counter</div>
+
+<SafeButton Task="AddCounter" Class="btn btn-primary" Style="color:red;">
+   Simple Click
+</SafeButton>
+<SafeButton Task="AddCounter2000" WaitForExecution=true>
+    2000ms + No Restrike
+</SafeButton>
+
+@code{
+    protected int Counter = 0;
+    protected async Task AddCounter()
+    {
+        Counter++;
+        StateHasChanged();
+        await Task.Delay(500);
+    }
+    protected async Task AddCounter2000()
+    {
+        Counter++;
+        StateHasChanged();
+        await Task.Delay(2000);
+    }
+}

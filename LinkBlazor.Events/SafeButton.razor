@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+
+<button class="@Class" style="@Style" @onclick=OnClick>
+    @ChildContent
+</button>
+@code {
+    [Parameter] public Action? Action { get; set; }
+    [Parameter] public Func<Task>? Task { get; set; }
+    [Parameter] public bool WaitForExecution { get; set; } = false;
+    [Parameter] public string Class { get; set; } = "btn btn-primary";
+    [Parameter] public string? Style { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    protected bool _Busy;
+    protected async void OnClick(MouseEventArgs e)
+    {
+
+        if (e.Button != 0 || e.Detail > 1 || (WaitForExecution && _Busy))
+            return;
+        _Busy = true;
+        if (Action != null)
+            Action.Invoke();
+        else if (Task != null)
+            await Task.Invoke();
+        _Busy = false;
+    }
+}
