@@ -1,15 +1,21 @@
 ﻿@using Microsoft.AspNetCore.Components.Web
 
-<button class="@Class" style="@Style" @onclick=OnClick>
+<button @attributes="@CapturedAttributes" @onclick=OnClick>
     @ChildContent
 </button>
 @code {
     [Parameter] public Action? Action { get; set; }
     [Parameter] public Func<Task>? Task { get; set; }
     [Parameter] public bool WaitForExecution { get; set; } = false;
-    [Parameter] public string Class { get; set; } = "btn btn-primary";
-    [Parameter] public string? Style { get; set; }
     [Parameter] public RenderFragment? ChildContent { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        if (!CapturedAttributes.ContainsKey("class"))
+        {
+            CapturedAttributes.Add("class", "btn btn-primary");
+        }
+        await base.OnInitializedAsync();
+    }
 
     protected bool _Busy;
     protected async void OnClick(MouseEventArgs e)
@@ -24,4 +30,6 @@
             await Task.Invoke();
         _Busy = false;
     }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> CapturedAttributes { get; set; } = [];
 }

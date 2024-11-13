@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-	  <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
+	  <TargetFrameworks>net8.0</TargetFrameworks>
 	  <Nullable>enable</Nullable>
 	  <OutputType>Library</OutputType>
 	  <IsPackable>true</IsPackable>
@@ -11,7 +11,7 @@
 	  <PackageProjectUrl>https://github.com/Linkens/LinkBlazor.Events</PackageProjectUrl>
 	  <RepositoryUrl>https://github.com/Linkens/LinkBlazor.Events</RepositoryUrl>
 	  <PackageTags>Blazor;Events;</PackageTags>
-	  <AssemblyVersion>1.8.1</AssemblyVersion>
+	  <AssemblyVersion>1.8.2</AssemblyVersion>
 	  <FileVersion>$(AssemblyVersion)</FileVersion>
 	  <Version>$(AssemblyVersion)</Version>
 	  <Description>Button tools and other events</Description>
@@ -25,9 +25,6 @@
 	</ItemGroup>
 
   <ItemGroup>
-
-	  <PackageReference Include="Microsoft.AspNetCore.Components" Condition="'$(TargetFramework)' == 'net7.0'" Version="7.*" />
-	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Condition="'$(TargetFramework)' == 'net7.0'" Version="7.*" />
 	  <PackageReference Include="Microsoft.AspNetCore.Components" Condition="'$(TargetFramework)' == 'net8.0'" Version="8.*" />
 	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Condition="'$(TargetFramework)' == 'net8.0'" Version="8.*" />
   </ItemGroup>
