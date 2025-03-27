@@ -18,7 +18,7 @@
     }
 
     protected bool _Busy;
-    protected async void OnClick(MouseEventArgs e)
+    protected async Task OnClick(MouseEventArgs e)
     {
 
         if (e.Button != 0 || e.Detail > 1 || (WaitForExecution && _Busy))
